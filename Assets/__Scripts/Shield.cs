@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 
 public class Shield : MonoBehaviour {
-
-    [Header("Set in inspector")]
+	[Header("Set in inspector")]
 	public float rotationsPerSecond = 0.1f;
 	
     [Header("Set Dynamically")]
 	public int levelShown = 0;
 
+	Material mat;
 
 	// Use this for initialization
 	void Start () {
-
+		mat = GetComponent<Renderer> ().material;
 	}
 	
 	// Update is called once per frame
