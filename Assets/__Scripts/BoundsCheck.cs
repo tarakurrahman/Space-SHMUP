@@ -10,8 +10,10 @@ using UnityEngine;
 public class BoundsCheck : MonoBehaviour {
 	[Header("Set in Inspector")]
 	public float radius = 1f;
+	public bool keepOnScreen = true;
 
 	[Header("Set Dynamically")]
+	public bool isOnScreen = true;
 	public float camWidth;
 	public float camHeight;
 
@@ -21,25 +23,33 @@ public class BoundsCheck : MonoBehaviour {
 	}
 
 	void LateUpdate () {
-		Vector3 pos = transform.position;
+		Vector3 pos = transform.position; // c
+		isOnScreen = true; // d
 
-		if (pos.x > camWidth - radius) {
+		if ( pos.x > camWidth - radius ) {
 			pos.x = camWidth - radius;
+			isOnScreen = false; // e
 		}
 
-		if (pos.x < -camWidth + radius) {
+		if ( pos.x < -camWidth + radius ) {
 			pos.x = -camWidth + radius;
+			isOnScreen = false; // e
 		}
 
-		if (pos.y > camHeight - radius) {
+		if ( pos.y > camHeight - radius ) {
 			pos.y = camHeight - radius;
+			isOnScreen = false; // e
 		}
 
-		if (pos.y < -camHeight + radius) {
+		if ( pos.y < -camHeight + radius ) {
 			pos.y = -camHeight + radius;
+			isOnScreen = false; // e
 		}
 
-		transform.position = pos;
+		if ( keepOnScreen && !isOnScreen ) { // f
+			transform.position = pos; // g
+			isOnScreen = true;
+		}
 	}
 
 	void OnDrawGizmos () {
