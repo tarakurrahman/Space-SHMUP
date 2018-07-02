@@ -41,6 +41,7 @@ public class Enemy_1 : Enemy { // a
 
 		// base.Move() still handles the movement down in y
 		base.Move(); // d
-		// print( bndCheck.isOnScreen );
+
+       // print( bndCheck.isOnScreen );
 	}
 }
