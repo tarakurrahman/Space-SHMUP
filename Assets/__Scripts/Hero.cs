@@ -30,7 +30,7 @@ public class Hero : MonoBehaviour {
         } else {
             Debug.LogError("Hero.Awake() - Attempted to assign second Hero.S!");
         }
-        fireDelegate += TempFire; // b
+       // fireDelegate += TempFire; // b
     }
 
 	// Update is called once per frame
@@ -56,18 +56,6 @@ public class Hero : MonoBehaviour {
         if (Input.GetAxis("Jump") == 1 && fireDelegate != null) { // d
             fireDelegate(); // e
         }
-    }
-
-    void TempFire() { // f
-        GameObject projGO = Instantiate<GameObject>(projectilePrefab);
-        projGO.transform.position = transform.position;
-        Rigidbody rigidB = projGO.GetComponent<Rigidbody>();
-        // rigidB.velocity = Vector3.up * projectileSpeed; // g
-
-        Projectile proj = projGO.GetComponent<Projectile>(); // h
-        proj.type = WeaponType.blaster;
-        float tSpeed = Main.GetWeaponDefinition(proj.type).velocity;
-        rigidB.velocity = Vector3.up * tSpeed;
     }
 
     void OnTriggerEnter(Collider other) {
